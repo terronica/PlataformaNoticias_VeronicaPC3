@@ -1,0 +1,16 @@
+@* Views/Posts/Details.cshtml *@
+@model PostEnriched
+<h2>@Model.Title</h2>
+<p>@Model.Body</p>
+<p><strong>Autor:</strong> @Model.Author</p>
+<h4>Comentarios:</h4>
+<ul>
+@foreach (var c in Model.Comments) {
+    <li>@c</li>
+}
+</ul>
+<form asp-action="React" method="post">
+    <input type="hidden" name="postId" value="@Model.Id" />
+    <button name="sentimiento" value="like">👍 Me gustó</button>
+    <button name="sentimiento" value="dislike">👎 No me gustó</button>
+</form>
