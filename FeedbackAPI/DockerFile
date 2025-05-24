@@ -1,34 +1,18 @@
-# ----------------------------------------
-# ETAPA DE CONSTRUCCIÓN (build)
-# ----------------------------------------
+# Build stage
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-
-# 1. Copiar SOLO los archivos .csproj (para cache óptimo)
-COPY ["FeedbackAPI/FeedbackAPI.csproj", "FeedbackAPI/"]
-COPY ["NewsIntegrationService/NewsIntegrationService.csproj", "NewsIntegrationService/"]
-
-# 2. Restaurar dependencias
-RUN dotnet restore "FeedbackAPI/FeedbackAPI.csproj"
-
-# 3. Copiar TODO el código fuente
+COPY ["FeedbackAPI.csproj", "."]
+RUN dotnet restore "FeedbackAPI.csproj"
 COPY . .
 RUN dotnet build "FeedbackAPI.csproj" -c Release -o /app/build
 
-
-WORKDIR "/src/FeedbackAPI"
+# Publish stage
+FROM build AS publish
 RUN dotnet publish "FeedbackAPI.csproj" -c Release -o /app/publish
 
-
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+# Runtime stage
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
-
-
-ENV ASPNETCORE_URLS=http://+:80
-EXPOSE 80
-
-
-COPY --from=build /app/publish .
-
-
+COPY --from=publish /app/publish .
+ENV ASPNETCORE_URLS=http://*:$PORT
 ENTRYPOINT ["dotnet", "FeedbackAPI.dll"]
