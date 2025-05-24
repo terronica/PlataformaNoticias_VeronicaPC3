@@ -1,0 +1,8 @@
+@* Views/Posts/Index.cshtml *@
+@using NewsIntegrationService.Models
+
+@model List<PostEnriched>
+<h1>Noticias</h1>
+@foreach (var post in Model) {
+    <h2><a href="/Posts/Details/@post.Id">@post.Title</a></h2>
+}
