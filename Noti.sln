@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsPortal", "NewsPortal\NewsPortal.csproj", "{B02ECB32-DE36-4E8D-9E14-A5518CCFF54E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeedbackAPI", "FeedbackAPI\FeedbackAPI.csproj", "{36DAEE92-4F24-48E4-ACE9-F67CB88DEEA5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsIntegrationService", "NewsIntegrationService\NewsIntegrationService.csproj", "{8BC47496-DC92-4346-A2B1-E024FA0C4517}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B02ECB32-DE36-4E8D-9E14-A5518CCFF54E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B02ECB32-DE36-4E8D-9E14-A5518CCFF54E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B02ECB32-DE36-4E8D-9E14-A5518CCFF54E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B02ECB32-DE36-4E8D-9E14-A5518CCFF54E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36DAEE92-4F24-48E4-ACE9-F67CB88DEEA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36DAEE92-4F24-48E4-ACE9-F67CB88DEEA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36DAEE92-4F24-48E4-ACE9-F67CB88DEEA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36DAEE92-4F24-48E4-ACE9-F67CB88DEEA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BC47496-DC92-4346-A2B1-E024FA0C4517}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BC47496-DC92-4346-A2B1-E024FA0C4517}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BC47496-DC92-4346-A2B1-E024FA0C4517}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BC47496-DC92-4346-A2B1-E024FA0C4517}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
