@@ -1,14 +1,30 @@
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-WORKDIR /app
-EXPOSE 80
-
+# ----------------------------------------
+# ETAPA DE CONSTRUCCIÓN
+# ----------------------------------------
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
+
+# 1. Copiar solo los .csproj para cache eficiente
+COPY ["NewsPortal/NewsPortal.csproj", "NewsPortal/"]
+COPY ["NewsIntegrationService/NewsIntegrationService.csproj", "NewsIntegrationService/"]
+COPY ["FeedbackAPI/FeedbackAPI.csproj", "FeedbackAPI/"]
+
+# 2. Restaurar dependencias
+RUN dotnet restore "NewsPortal/NewsPortal.csproj"
+
+# 3. Copiar todo el código
 COPY . .
-RUN dotnet restore
+RUN dotnet build "VeronicaSofiaPrograParcial.csproj" -c Release -o /app/build
+
+# 4. Publicar
+WORKDIR "/src/NewsPortal"
 RUN dotnet publish -c Release -o /app/publish
 
-FROM base AS final
+# ----------------------------------------
+# ETAPA FINAL (imagen liviana)
+# ----------------------------------------
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
+EXPOSE 80
 COPY --from=build /app/publish .
 ENTRYPOINT ["dotnet", "NewsPortal.dll"]
